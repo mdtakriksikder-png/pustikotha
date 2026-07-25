@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দৈনিক ক্যালোরি ও প্রোটিন হিসাব করুন | পুষ্টিকথা</title>
+<meta name="description" content="বয়স আর ওজন দিন — দিনে কতটা ক্যালোরি ও প্রোটিন দরকার, আর কোন মাছ-মাংস-ডাল থেকে কতটা প্রোটিন পাবেন জেনে নিন।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="dot"></span>পুষ্টিকথা</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#posts">লেখাগুলো</a>
+      <a href="khabar-khoj.html">খাবার খুঁজুন</a>
+      <a href="calorie-calculator.html">ক্যালোরি হিসাব</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="মেনু খুলুন">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="search-hero">
+    <span class="eyebrow">ব্যক্তিগত ক্যালকুলেটর</span>
+    <h1>আপনার দৈনিক ক্যালোরি ও প্রোটিন হিসাব</h1>
+    <p class="lede">বয়স আর ওজন দিন, সাথে দৈনিক কাজের ধরন বেছে নিন — দিনে কতটা খাওয়া দরকার আর কোন খাবার থেকে কতটা প্রোটিন পাবেন, সেটা দেখিয়ে দেবে।</p>
+
+    <div class="calc-form">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label for="age">বয়স (বছর)</label>
+          <input type="number" id="age" min="10" max="100" placeholder="যেমন: ২৮" inputmode="numeric">
+        </div>
+        <div class="calc-field">
+          <label for="weight">ওজন (কেজি)</label>
+          <input type="number" id="weight" min="20" max="200" placeholder="যেমন: ৬৫" inputmode="numeric">
+        </div>
+      </div>
+      <div class="calc-field" style="margin-bottom:18px;">
+        <label for="activity">দৈনিক কাজের ধরন</label>
+        <select id="activity">
+          <option value="low">কম সক্রিয় (বেশিরভাগ সময় বসে কাজ)</option>
+          <option value="medium" selected>মাঝারি সক্রিয় (হাঁটাচলা, হালকা পরিশ্রম)</option>
+          <option value="high">বেশি সক্রিয় (শারীরিক পরিশ্রমের কাজ / নিয়মিত ব্যায়াম)</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary calc-submit" id="calcBtn">হিসাব করুন</button>
+      <p id="calcError" style="display:none; color: var(--brick); font-size:0.85rem; text-align:center; margin: 12px 0 0;">দয়া করে বয়স ও ওজন দুটোই সঠিকভাবে লিখুন।</p>
+    </div>
+  </section>
+
+  <div class="calc-result" id="calcResult">
+
+    <div class="result-top">
+      <div class="result-card">
+        <div class="n" id="resCalories">--</div>
+        <div class="l">দৈনিক আনুমানিক ক্যালোরি</div>
+      </div>
+      <div class="result-card">
+        <div class="n" id="resProtein">--</div>
+        <div class="l">দৈনিক আনুমানিক প্রোটিন</div>
+      </div>
+    </div>
+
+    <div class="plate-breakdown">
+      <div class="row">
+        <span class="swatch" style="background:var(--turmeric)"></span>
+        <span class="label">ভাত, রুটি, শস্য জাতীয় (মোট ক্যালোরির ২৫%)</span>
+        <span class="val" id="resGrain">--</span>
+      </div>
+      <div class="row">
+        <span class="swatch" style="background:var(--forest)"></span>
+        <span class="label">সবজি ও ফল (মোট ক্যালোরির ৫০%)</span>
+        <span class="val" id="resVeg">--</span>
+      </div>
+      <div class="row">
+        <span class="swatch" style="background:var(--brick)"></span>
+        <span class="label">মাছ, মাংস, ডাল, ডিম (মোট ক্যালোরির ২৫%)</span>
+        <span class="val" id="resProteinCal">--</span>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>প্রোটিনের উৎস: কোনটায় কত</h2>
+      <p>১০০ গ্রাম মাছ-মাংস বা ১ কাপ রান্না করা ডালে যা পাবেন</p>
+    </div>
+
+    <div class="protein-table-wrap">
+      <table class="protein-table">
+        <thead>
+          <tr><th>খাবার</th><th>ক্যালোরি</th><th>প্রোটিন</th></tr>
+        </thead>
+        <tbody id="proteinTableBody"></tbody>
+      </table>
+    </div>
+
+    <p class="calc-disclaimer">এই হিসাব একটা সাধারণ আনুমানিক গাইডলাইন মাত্র — শরীরের গঠন, স্বাস্থ্য অবস্থা ও ওষুধ অনুযায়ী প্রকৃত প্রয়োজন ভিন্ন হতে পারে। নির্দিষ্ট প্রয়োজনে পুষ্টিবিদের পরামর্শ নেওয়া ভালো।</p>
+  </div>
+
+  <div style="text-align:center; margin: 20px 0 50px;">
+    <a href="khaddo-upadan.html" class="btn btn-primary">পরবর্তী: ক্যালোরি-প্রোটিন আসলে কী →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© ২০২৬ পুষ্টিকথা</span>
+    <span>সহজ ভাষায়, প্রতিদিনের খাবার নিয়ে</span>
+  </div>
+</footer>
+
+<script src="food-database.js"></script>
+<script src="script.js"></script>
+<script>
+  const calcBtn = document.getElementById('calcBtn');
+  const calcError = document.getElementById('calcError');
+  const calcResult = document.getElementById('calcResult');
+
+  function toBanglaDigits(num) {
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    return String(Math.round(num)).replace(/\d/g, (d) => bn[d]);
+  }
+
+  function renderProteinTable() {
+    const tbody = document.getElementById('proteinTableBody');
+    tbody.innerHTML = '';
+    const proteinFoods = foodDatabase.filter((item) => item.type === 'প্রোটিন');
+    proteinFoods.forEach((item) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.kcal}</td>
+        <td class="protein-val">${item.protein || '—'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  calcBtn.addEventListener('click', () => {
+    const age = parseFloat(document.getElementById('age').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const activity = document.getElementById('activity').value;
+
+    if (!age || !weight || age < 5 || weight < 15) {
+      calcError.style.display = 'block';
+      calcResult.classList.remove('show');
+      return;
+    }
+    calcError.style.display = 'none';
+
+    const calorieFactor = { low: 26, medium: 31, high: 38 }[activity];
+    const proteinFactor = { low: 0.8, medium: 1.0, high: 1.2 }[activity];
+
+    let totalCalories = weight * calorieFactor;
+    if (age >= 50) totalCalories *= 0.95;
+    const totalProtein = weight * proteinFactor;
+
+    document.getElementById('resCalories').textContent = toBanglaDigits(totalCalories) + ' kcal';
+    document.getElementById('resProtein').textContent = toBanglaDigits(totalProtein) + ' গ্রাম';
+
+    document.getElementById('resGrain').textContent = toBanglaDigits(totalCalories * 0.25) + ' kcal';
+    document.getElementById('resVeg').textContent = toBanglaDigits(totalCalories * 0.50) + ' kcal';
+    document.getElementById('resProteinCal').textContent = toBanglaDigits(totalCalories * 0.25) + ' kcal';
+
+    renderProteinTable();
+    calcResult.classList.add('show');
+    calcResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+</body>
+</html>
