@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>খাবার খুঁজুন — ক্যালোরি, উপকারিতা ও সময় | পুষ্টিকথা</title>
+<meta name="description" content="যেকোনো ফল বা সবজির নাম লিখুন — ক্যালোরি, উপকারিতা, অপকারিতা আর খাওয়ার ভালো সময় জেনে নিন।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="dot"></span>পুষ্টিকথা</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#posts">লেখাগুলো</a>
+      <a href="index.html#plate">আজকের থালা</a>
+      <a href="khabar-khoj.html">খাবার খুঁজুন</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="মেনু খুলুন">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="search-hero">
+    <span class="eyebrow">ক্যালোরি ও পুষ্টি অভিধান</span>
+    <h1>যেকোনো ফল বা সবজির নাম লিখুন</h1>
+    <p class="lede">ক্যালোরি কত, কী উপকার, কী অপকার, আর কখন খেলে সবচেয়ে ভালো — সব একসাথে জানতে পারবেন।</p>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="যেমন: কলা, পালং শাক, গাজর..."
+        autocomplete="off"
+      >
+      <div class="suggestions" id="suggestions"></div>
+      <p class="no-result" id="noResult" style="display:none;">এই নামে কিছু পাওয়া যায়নি — বানান আরেকটু মিলিয়ে চেষ্টা করুন।</p>
+    </div>
+  </section>
+
+  <div class="food-detail" id="foodDetail">
+    <div class="food-detail-head">
+      <div>
+        <h2 id="foodName"></h2>
+        <span class="type-tag" id="foodType"></span>
+      </div>
+      <div class="kcal-big">
+        <div class="num" id="foodKcal"></div>
+      </div>
+    </div>
+    <div class="food-detail-body">
+      <div class="food-section benefit">
+        <div class="head"><span class="dot-sm"></span>উপকারিতা</div>
+        <p id="foodBenefit"></p>
+      </div>
+      <div class="food-section drawback">
+        <div class="head"><span class="dot-sm"></span>অপকারিতা / সতর্কতা</div>
+        <p id="foodDrawback"></p>
+      </div>
+      <div class="food-section time">
+        <div class="head"><span class="dot-sm"></span>কখন খেলে ভালো</div>
+        <p id="foodTime"></p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© ২০২৬ পুষ্টিকথা</span>
+    <span>সহজ ভাষায়, প্রতিদিনের খাবার নিয়ে</span>
+  </div>
+</footer>
+
+<script src="food-database.js"></script>
+<script src="script.js"></script>
+<script>
+  const input = document.getElementById('searchInput');
+  const suggestionsBox = document.getElementById('suggestions');
+  const noResult = document.getElementById('noResult');
+  const detailBox = document.getElementById('foodDetail');
+
+  function showDetail(item) {
+    document.getElementById('foodName').textContent = item.name;
+    document.getElementById('foodType').textContent = item.type;
+    document.getElementById('foodKcal').textContent = item.kcal;
+    document.getElementById('foodBenefit').textContent = item.benefit;
+    document.getElementById('foodDrawback').textContent = item.drawback;
+    document.getElementById('foodTime').textContent = item.bestTime;
+    detailBox.classList.add('show');
+    detailBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function renderSuggestions(query) {
+    suggestionsBox.innerHTML = '';
+    noResult.style.display = 'none';
+
+    if (!query.trim()) return;
+
+    const matches = foodDatabase.filter((item) => item.name.includes(query.trim()));
+
+    if (matches.length === 0) {
+      noResult.style.display = 'block';
+      return;
+    }
+
+    matches.slice(0, 8).forEach((item) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'suggestion-item';
+      btn.textContent = `${item.name} · ${item.kcal}`;
+      btn.addEventListener('click', () => {
+        input.value = item.name;
+        suggestionsBox.innerHTML = '';
+        showDetail(item);
+      });
+      suggestionsBox.appendChild(btn);
+    });
+
+    // একদম মিলে গেলে সরাসরি বিস্তারিত দেখাই
+    const exact = foodDatabase.find((item) => item.name === query.trim());
+    if (exact) showDetail(exact);
+  }
+
+  input.addEventListener('input', (e) => renderSuggestions(e.target.value));
+</script>
+</body>
+</html>
