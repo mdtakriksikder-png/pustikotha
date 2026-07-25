@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>পুষ্টিকথা — খাবার, ক্যালোরি ও দৈনন্দিন পুষ্টির গল্প</title>
+<meta name="description" content="প্রতিদিনের খাবারে কত ক্যালোরি, কতটা খাওয়া উচিত — সহজ ভাষায় পুষ্টির ব্লগ।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="dot"></span>পুষ্টিকথা</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#posts">লেখাগুলো</a>
+      <a href="#plate">আজকের থালা</a>
+      <a href="khabar-khoj.html">খাবার খুঁজুন</a>
+      <a href="calorie-calculator.html">ক্যালোরি হিসাব</a>
+      <a href="#need">দৈনিক চাহিদা</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="মেনু খুলুন">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">সহজ পুষ্টি জ্ঞান</span>
+        <h1>প্রতিদিনের পাতে <em>কত খাব</em>, কেন খাব</h1>
+        <p class="lede">ভাত, ডাল, মাছ থেকে ফল — প্রতিটা খাবারে কত ক্যালোরি, আর একজন সুস্থ মানুষের দিনে ঠিক কতটা দরকার। জটিল হিসাব ছাড়াই, বাংলায়, সহজ করে।</p>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#posts" class="btn btn-primary">লেখাগুলো দেখুন</a>
+          <a href="#plate" class="btn btn-ghost">থালার হিসাব বুঝি</a>
+        </div>
+      </div>
+
+      <div class="plate-card" id="plate">
+        <h3>আজকের থালা</h3>
+        <p class="sub">একবেলার আদর্শ থালা কেমন হওয়া উচিত, তার একটা সহজ ছবি</p>
+        <div class="plate" role="img" aria-label="থালার তিনটি ভাগ: অর্ধেক সবজি ও ফল, এক-চতুর্থাংশ শস্য, এক-চতুর্থাংশ প্রোটিন"></div>
+        <div class="plate-legend">
+          <div class="row">
+            <span class="swatch" style="background:var(--forest)"></span>
+            <span class="label">সবজি ও ফল</span>
+            <span class="note">থালার অর্ধেক</span>
+          </div>
+          <div class="row">
+            <span class="swatch" style="background:var(--turmeric)"></span>
+            <span class="label">ভাত, রুটি, শস্য</span>
+            <span class="note">এক-চতুর্থাংশ</span>
+          </div>
+          <div class="row">
+            <span class="swatch" style="background:var(--brick)"></span>
+            <span class="label">মাছ, মাংস, ডাল, ডিম</span>
+            <span class="note">এক-চতুর্থাংশ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="need-strip" style="grid-template-columns: 1fr; text-align:center; padding: 30px 24px;">
+        <div>
+          <div style="font-family: var(--display); font-size:1.3rem; margin-bottom:8px;">যেকোনো ফল বা সবজির নাম লিখে দেখুন</div>
+          <div style="color: rgba(250,246,236,0.8); font-size:0.92rem; margin-bottom:18px;">ক্যালোরি, উপকারিতা, অপকারিতা আর খাওয়ার সঠিক সময় — এক জায়গায়</div>
+          <a href="khabar-khoj.html" class="btn" style="background:var(--turmeric); color:var(--ink);">খাবার খুঁজুন →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>সাম্প্রতিক লেখা</h2>
+        <p>ক্যালোরি, খাবারের হিসাব আর ছোট ছোট অভ্যাস নিয়ে</p>
+      </div>
+
+      <div class="grid">
+
+        <a href="post-bhat-o-calorie.html" class="card">
+          <div class="kcal-tag">
+            <span class="num">২০০</span>
+            <span class="unit">kcal / ১ কাপ ভাত</span>
+          </div>
+          <div class="card-body">
+            <span class="tag">প্রধান খাবার</span>
+            <h3>এক কাপ ভাতে কত ক্যালোরি, আর দিনে কতটা খাওয়া ঠিক</h3>
+            <p>ভাত বাঙালির প্রধান খাবার। কিন্তু এক থালা ভাতে আসলে কতটা ক্যালোরি থাকে, আর একজন প্রাপ্তবয়স্কের দিনে কতটা ভাত দরকার — সহজ হিসাবে।</p>
+            <span class="read">বিস্তারিত পড়ুন →</span>
+          </div>
+        </a>
+
+        <a href="post-nastar-fol.html" class="card">
+          <div class="kcal-tag">
+            <span class="num">৯০</span>
+            <span class="unit">kcal / ১টি কলা</span>
+          </div>
+          <div class="card-body">
+            <span class="tag">ফল</span>
+            <h3>নাস্তার ফল বাছাই: কোনটায় ক্যালোরি কম, পুষ্টি বেশি</h3>
+            <p>কলা, আপেল, পেয়ারা, পেঁপে — কোন ফল কখন খেলে উপকার বেশি, ক্যালোরির হিসাবসহ একটা সহজ তুলনা।</p>
+            <span class="read">বিস্তারিত পড়ুন →</span>
+          </div>
+        </a>
+
+        <a href="calorie-calculator.html" class="card">
+          <div class="kcal-tag">
+            <span class="num">১২০</span>
+            <span class="unit">kcal / ১০০গ্রাম মাছ</span>
+          </div>
+          <div class="card-body">
+            <span class="tag">প্রোটিন · ক্যালকুলেটর</span>
+            <h3>আপনার দৈনিক ক্যালোরি ও প্রোটিন হিসাব করুন</h3>
+            <p>বয়স আর ওজন দিন — দিনে কতটা প্রোটিন দরকার, আর মাছ-মাংস-ডাল থেকে সেটা কীভাবে পূরণ হয়, ক্যালোরিসহ দেখে নিন।</p>
+            <span class="read">হিসাব করুন →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="need">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>দিনে কতটা ক্যালোরি দরকার</h2>
+        <p>বয়স ও কাজের ধরন অনুযায়ী আনুমানিক হিসাব</p>
+      </div>
+      <div class="need-strip">
+        <div class="item">
+          <div class="n">~২০০০</div>
+          <div class="l">প্রাপ্তবয়স্ক নারী (মাঝারি সক্রিয়)</div>
+        </div>
+        <div class="item">
+          <div class="n">~২৫০০</div>
+          <div class="l">প্রাপ্তবয়স্ক পুরুষ (মাঝারি সক্রিয়)</div>
+        </div>
+        <div class="item">
+          <div class="n">~১৬০০</div>
+          <div class="l">বসে কাজ করা / কম সক্রিয় জীবনযাপন</div>
+        </div>
+        <div class="item">
+          <div class="n">~২৮০০+</div>
+          <div class="l">শারীরিক পরিশ্রমের কাজ</div>
+        </div>
+      </div>
+      <p class="need-note">এগুলো সাধারণ আনুমানিক হিসাব — বয়স, উচ্চতা, স্বাস্থ্য অবস্থা অনুযায়ী পার্থক্য হতে পারে। নির্দিষ্ট প্রয়োজনে পুষ্টিবিদের পরামর্শ নেওয়া ভালো।</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© ২০২৬ পুষ্টিকথা</span>
+    <span>সহজ ভাষায়, প্রতিদিনের খাবার নিয়ে</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
